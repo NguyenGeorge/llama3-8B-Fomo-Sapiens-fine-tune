@@ -1,0 +1,9 @@
+unsloth==2026.1.15
+unsloth_zoo==2026.1.15
+torchao==0.6.1
+opensloth==0.2.1
+trl==0.12.0
+bitsandbytes
+xformers<0.0.29
+peft
+accelerate
