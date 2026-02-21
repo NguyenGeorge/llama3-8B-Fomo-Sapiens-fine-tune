@@ -13,7 +13,7 @@ logging.getLogger("transformers.modeling_utils").setLevel(logging.ERROR)
 os.environ["PYTORCH_CUDA_ALLOC_CONF"] = "expandable_segments:True"
 os.environ["NCCL_BLOCKING_WAIT"] = "1"
 os.environ["TORCH_NCCL_ASYNC_ERROR_HANDLING"] = "1"
-#Tell Hugging Face lib to wait
+# Tell Hugging Face lib to wait
 os.environ["HF_HUB_READ_TIMEOUT"] = "3600"
 os.environ["HF_HUB_DOWNLOAD_TIMEOUT"] = "3600"
 os.environ["HF_HUB_ETAG_TIMEOUT"] = "1000"
