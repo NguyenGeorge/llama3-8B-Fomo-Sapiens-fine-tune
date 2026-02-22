@@ -18,10 +18,10 @@ Stream --> Unsloth[Unsloth 4-bit Quantization]
 Unsloth --> DDP[Dual-T4 GPU Orchestration]
 DDP --> LoRA[PEFT/LoRA Adapter Training]
 end
-```
 
 LoRA --> Monitor[Tensorboard Validation]
 Monitor --> Export[HF / GGUF Model Export]
+```
 
 ## Getting Started - Run the script with multi-gpu support (2 GPUs):
 
