@@ -10,17 +10,25 @@ This repository contains a fine-tuning script for LLMs using **Unsloth/Opensloth
 ## Project Architecture
 ```mermaid
 graph TD
-Data[Raw Telegram JSON] --> Clean[NLP Cleaning & De-identification]
-Clean --> Format[Conversation-to-Prompt Mapping]
-Format --> Stream[Streaming Dataset Loader]
-subgraph Train [Kaggle Distributed Training]
-Stream --> Unsloth[Unsloth 4-bit Quantization]
-Unsloth --> DDP[Dual-T4 GPU Orchestration]
-DDP --> LoRA[PEFT/LoRA Adapter Training]
-end
+    Data[Raw Telegram JSON] --> Clean[NLP Cleaning & De-identification]
+    Clean --> Format[Conversation-to-Prompt Mapping]
+    
+    %% This line points directly to the 'Train' box boundary
+    Format --> Train
 
-LoRA --> Monitor[Tensorboard Validation]
-Monitor --> Export[HF / GGUF Model Export]
+    subgraph Train [Kaggle Distributed Training]
+        Stream[Streaming Dataset Loader]
+        Unsloth[Unsloth 4-bit Quantization]
+        DDP[Dual-T4 GPU Orchestration]
+        LoRA[PEFT/LoRA Adapter Training]
+        
+        Stream --> Unsloth
+        Unsloth --> DDP
+        DDP --> LoRA
+    end
+
+    LoRA --> Monitor[Tensorboard Validation]
+    Monitor --> Export[HF / GGUF Model Export]
 ```
 
 ## Getting Started - Run the script with multi-gpu support (2 GPUs):
